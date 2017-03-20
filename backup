@@ -1,0 +1,85 @@
+
+  Maps.prototype.addMarkers = function(){
+        var markers = [];
+        for(var i = 0,x = treesArray.length; i < x; i += 1){
+        var tree = treesArray[i];
+        if (tree.significance === true){
+            var icon = new AMap.Icon({
+              image: 'http://vdata.amap.com/icons/b18/1/2.png',//remember making the new icon
+              size: new AMap.Size(24, 24)
+            });
+            var marker = new AMap.Marker({
+              icon: icon,
+              position: tree.center.split(','),
+              title: tree.name,
+            });
+          marker.setMap(this.map);
+          var content = [];
+          var title = $('<p>'+tree.name+'</p>',{'class':'s-info-title'});
+          content.push($('<p>'+tree.age+'</p>'),{'class':'s-info-age'});
+          content.push($('<p>'+tree.family+tree.genus+tree.species+'</p>'),{'class':'s-info-details'});
+          content.push($('<img src="'+tree.pic+'"/>'),{'class':'s-info-img'});
+          content.push($('<p>'+tree.story+'</p>'),{'class':'s-info-story'});
+          var infoWindow = new AMap.InfoWindow({
+                isCustom: true,
+                content: createInfoWindow(title, content.join("<br/>"),map),
+                offset: new AMap.Pixel(16, -45)
+            });
+            AMap.event.addListener(marker, 'click', function() {
+              infoWindow.open(map, marker.getPosition());
+            });
+        }else{
+          var marker = new AMap.Marker({
+              position: tree.center.split(','),
+              title: tree.name,
+            });
+          marker.setMap(this.map);
+           var content = [];
+           var title = $('<p>'+tree.name+'</p>',{'class':'i-info-title'});
+           content.push($('<p>'+tree.age+'</p>'),{'class':'i-info-age'});
+           content.push($('<p>'+tree.family+tree.genus+tree.species+'</p>'),{'class':'i-info-details'});
+           var infoWindow = new AMap.InfoWindow({
+                  isCustom: true,
+                  content: createInfoWindow(title, content.join("<br/>"),map),
+                  offset: new AMap.Pixel(16, -45)
+              });
+            AMap.event.addListener(marker, 'click', function() {
+                infoWindow.open(map, marker.getPosition());
+         });
+      }
+        markers.push(marker);
+    }
+};
+
+function createInfoWindow(title,content,map){
+  var info,top,close,middle;
+  if(screenWidth < screenHeight){
+    info = $('<div></div>',{'class':'info-window'});
+    top = $('<div></div>',{'class':'info-top'});
+    close = $('<img src="http://webapi.amap.com/images/close2.gif"/>',{'class':'info-close'});
+    middle = $('<div></div>',{'class':'info-middle'});
+    title.appendTo(top);
+    close.appendTo(top);
+    content.appendTo(middle);
+    top.appendTo(info);
+    middle.appendTo(info);
+    close.onclick = function closeInfoWindow() {
+    map.clearInfoWindow();
+      };
+  }else{
+    info = $('<div></div>',{'class':'web-info-window'});
+    top = $('<div></div>',{'class':'web-info-top'});
+    close = $('<img src="http://webapi.amap.com/images/close2.gif"/>',{
+      'class':'web-info-close'});
+    middle = $('<div></div>',{'class':'web-info-middle'});
+    title.appendTo(top);
+    close.appendTo(top);
+    content.appendTo(middle);
+    top.appendTo(info);
+    middle.appendTo(info);
+    close.onclick = function closeInfoWindow() {
+    map.clearInfoWindow();
+      };
+  }
+  return info;
+}

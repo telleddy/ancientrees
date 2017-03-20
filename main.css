@@ -1,0 +1,432 @@
+
+/****************************************
+*
+* Default CSS for screen devices
+* Baisic layout setting
+*
+****************************************/
+html{
+  height:100%;
+}
+body{
+  font-size: 100%;
+  overflow: auto;
+  background-color: #900;
+}
+/****************************************
+*
+* border for the whole page
+* when window.width > window.height
+* remove the web-body-ns and web-body-ew
+*
+****************************************/
+.web-body-ns::before, .web-body-ns::after{
+  content: "";
+  position: fixed;
+  background: #900;
+  left: 0;
+  right: 0;
+  height: 15px;
+  z-index:4;
+}
+.web-body-ns::before{
+  top: 0;
+}
+.web-body-ns::after{
+  bottom: 0;
+}
+.web-body-ew::before, .web-body-ew::after{
+  content: "";
+  position: fixed;
+  background: #900;
+  top:0;
+  bottom:0;
+  width: 15px;
+  z-index:5;
+}
+.web-body-ew::before{
+  left: 0;
+}
+.web-body-ew::after{
+  right: 0;
+}
+/****************************************
+*
+* when window.width > window.height
+* change the height with jQuery
+*
+****************************************/
+header{
+  width:100%;
+  height:10%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color:yellow;
+  display: block;
+  z-index:1;
+
+}
+
+/****************************************
+*
+* when window.width > window.height
+* remove the 'mobile-sidebar' class
+* add the 'web-sidebar' class
+*
+****************************************/
+
+.sidebar{
+  position:absolute;
+  background-color:blue;
+  z-index:1;
+  text-align: center;
+  overflow: auto;
+}
+.mobile-sidebar{
+  width:100%;
+  top:8%;
+  height:92%;
+  left:-100%;
+}
+.web-sidebar{
+  width:30%;
+  height:100%;
+  left:0;
+  top:0;
+  line-height:2;
+
+}
+/****************************************
+*
+* when 'nav-trigger'is triggered
+* add the 'sidebar-toggle' class
+*
+****************************************/
+.sidebar-toggle{
+  -webkit-transform: translateX(100%);
+  -moz-transform: translateX(100%);
+  -ms-transform: translateX(100%);
+  -o-transform: translateX(100%);
+  transform: translateX(100%);
+  -webkit-transition-property: -webkit-transform;
+  -moz-transition-property: -moz-transform;
+  transition-property: transform;
+  -webkit-transition-duration: 0.4s;
+  -moz-transition-duration: 0.4s;
+  transition-duration: 0.4s;
+}
+
+/****************************************
+*
+* the main area layout
+* when window.width > window.height
+* remove the 'mobile-content' class
+* add the 'web-content' class
+* change the height with jQuery
+*
+****************************************/
+
+.main-content{
+  background-color: purple;
+  z-index:-1;
+}
+.mobile-content{
+  position:absolute;
+  left:0;
+  width:100%;
+  height:100%;
+}
+.web-content{
+  position:absolute;
+  left:30%;
+  width:70%;
+  height:100%;
+}
+
+/****************************************
+*
+* the aside part layout
+* when window.width > window.height
+* add the 'web-noshift' class
+*
+****************************************/
+
+.mobile-shift{
+  position:absolute;
+  top:0;
+  left:100%;
+  z-index:0;
+  width:100%;
+  height:100%;
+  background-color:orange;
+}
+.web-noshift{
+  display:none;
+}
+
+/****************************************
+*
+* when 'nav-trigger'is triggered
+* add the 'shift-triggerd' class
+* not showing when
+****************************************/
+
+.shift-triggered{
+  -webkit-transform: translateX(-100%);
+  -moz-transform: translateX(-100%);
+  -ms-transform: translateX(-100%);
+  -o-transform: translateX(-100%);
+  transform: translateX(-100%);
+  -webkit-transition-property: -webkit-transform;
+  -moz-transition-property: -moz-transform;
+  transition-property: transform;
+  -webkit-transition-duration: 0.4s;
+  -moz-transition-duration: 0.4s;
+  transition-duration: 0.4s;
+}
+/****************************************
+*
+* 1. distribute the space in the header
+* 2. font-title:'HanWangT0007971355ce118622'
+* 3. nav-icon plus effect when clicked
+* 4. not showing nav-trigger when window.width > window.height
+* 5. change web-title when window.width > window.height
+*
+****************************************/
+
+.title-text{
+  font-family:'HanWangT0007971355ce118622';
+  font-weight:lighter;
+  color:brown;
+  position: absolute;
+  top: 50%;
+  right:0.875em;
+  bottom: auto;
+}
+.web-title{
+  font-size:2.5em;
+  letter-spacing:0.5em;
+  -webkit-transform: translateY(-30%);
+  -moz-transform: translateY(-30%);
+  -ms-transform: translateY(-30%);
+  -o-transform: translateY(-30%);
+  transform: translateY(-30%);
+
+}
+.mobile-title{
+  font-size:1.5em;
+  -webkit-transform: translateY(-50%);
+  -moz-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+  -o-transform: translateY(-50%);
+  transform: translateY(-50%);
+}
+
+/* let's make the icon on mobile devices! */
+.nav-trigger{
+  position: absolute;
+  left:0.875em;
+  top: 0;
+  height:100%;
+  width: 50px;
+}
+.nav-trigger .nav-icon{
+  display: inline-block;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  bottom: auto;
+  right: auto;
+  -webkit-transform: translateX(-50%) translateY(-50%);
+  -moz-transform: translateX(-50%) translateY(-50%);
+  -ms-transform: translateX(-50%) translateY(-50%);
+  -o-transform: translateX(-50%) translateY(-50%);
+  transform: translateX(-50%) translateY(-50%);
+  width: 18px;
+  height: 2px;
+  background-color: white;
+}
+.nav-trigger .nav-icon::before, .nav-trigger .nav-icon:after {
+  content: '';
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  background-color: white;
+  right: 0;
+  -webkit-transition: -webkit-transform .3s, top .3s;
+  -moz-transition: -moz-transform .3s, top .3s;
+  transition: transform .3s, top .3s;
+
+}
+.nav-trigger .nav-icon::before {
+  top: -5px;
+}
+.nav-trigger .nav-icon::after {
+  top: 5px;
+}
+/* make the icon move when clicked */
+.nav-trigger .nav-icon.is-clicked{
+  background-color: rgba(255, 255, 255, 0);
+}
+.nav-trigger .nav-icon.is-clicked::before {
+  top: 0;
+  -webkit-transform: rotate(135deg);
+  -moz-transform: rotate(135deg);
+  -ms-transform: rotate(135deg);
+  -o-transform: rotate(135deg);
+  transform: rotate(135deg);
+}
+.nav-trigger .nav-icon.is-clicked::after {
+  top: 0;
+  -webkit-transform: rotate(225deg);
+  -moz-transform: rotate(225deg);
+  -ms-transform: rotate(225deg);
+  -o-transform: rotate(225deg);
+  transform: rotate(225deg);
+}
+/****************************************
+*
+* when window.width > window.height
+* remove the 'nav-trigger' class
+* add the 'web-no-trigger' class
+*
+****************************************/
+
+.web-no-trigger{
+  display:none;
+}
+
+/****************************************
+*
+* distribute the space in the nav-list
+* center the nav-list element both horizontally and
+  vertically without using flexbox
+* set the font-size and margin for each items
+* when window.width > window.height
+* remove the 'mobile-nav-list' class
+* add the 'web-nav-list' class
+*
+* font-nav:'TSSunOld9713aa4b018622'
+*
+****************************************/
+.web-nav-list{
+  padding:100px 0;
+}
+
+.mobile-nav-list{
+  padding:40px 0;
+}
+
+nav .nav-list li{
+  font-family:'TSSunOld9713aa4b018622';
+  line-height:1.15;
+  list-style: none;
+  margin: .6em 0;
+}
+nav .nav-list a{
+  color: white;
+  text-decoration: none;
+}
+nav .web-nav-list li{
+  font-size: 22px;
+  font-size: 1.375rem;
+}
+nav .mobile-nav-list li{
+  font-size: 18px;
+  font-size: 1.125rem;
+}
+nav .footer{
+  display:block;
+  margin: 3em 0 .8em;
+}
+nav .mobile-footer{
+  font-size: 14px;
+  font-size: 0.875rem;
+}
+nav .web-footer{
+  font-size: 16px;
+  font-size: 1rem;
+}
+
+/****************************************
+*
+* distribute the space in the content area
+*
+****************************************/
+.empty-div{
+  width:100%;
+}
+.web-empty-div{
+  height:10%;
+}
+.mobile-empty-div{
+  height:8%;
+}
+.map-field{
+  width:100%;
+}
+.web-map-field{
+  height:90%;
+}
+.mobile-map-field{
+  height:92%;
+}
+/****************************************
+*
+* for infoWindow
+*
+****************************************/
+.info-window{
+  background-color: rgba(153, 0, 0,0.8);
+  border-radius: 1vw;
+}
+.info {
+          border: solid 1px silver;
+      }
+      div.info-top {
+          position: relative;
+          background: none repeat scroll 0 0 #F9F9F9;
+          border-bottom: 1px solid #CCC;
+          border-radius: 5px 5px 0 0;
+      }
+      div.info-top div {
+          display: inline-block;
+          color: #333333;
+          font-size: 14px;
+          font-weight: bold;
+          line-height: 31px;
+          padding: 0 10px;
+      }
+      div.info-top img {
+          position: absolute;
+          top: 10px;
+          right: 10px;
+          transition-duration: 0.25s;
+      }
+      div.info-top img:hover {
+          box-shadow: 0px 0px 5px #000;
+      }
+      div.info-middle {
+          font-size: 12px;
+          padding: 6px;
+          line-height: 20px;
+      }
+      div.info-bottom {
+          height: 0px;
+          width: 100%;
+          clear: both;
+          text-align: center;
+      }
+      div.info-bottom img {
+          position: relative;
+          z-index: 104;
+      }
+      span {
+          margin-left: 5px;
+          font-size: 11px;
+      }
+      .info-middle img {
+          float: left;
+          margin-right: 6px;
+      }
